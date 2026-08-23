@@ -1,8 +1,8 @@
 # StoreOps Harness Starter Kit (.NET 8)
 
-This folder is a **starting scaffold**, not a finished submission. It contains a fully
-drafted orchestrator, agent files, and skill files consistent with the AI-Native Tech
-Architect capstone brief (Build Track), customized for:
+This repository contains a working StoreOps baseline (ASP.NET Core Web API) plus the
+harness — orchestrator, agent files, and skill files — that drives further feature work
+through it, consistent with the AI-Native Tech Architect capstone brief (Build Track).
 
 - Stack: .NET 8 / C# 12 / ASP.NET Core Web API
 - Demonstration feature: SLA breach alerting
@@ -12,9 +12,7 @@ Architect capstone brief (Build Track), customized for:
 
 ```
 CLAUDE.md                  root orchestrator
-BOOTSTRAP_PROMPT.md         the Section 2.3 bootstrap prompt, filled in for .NET 8 — run
-                             this FIRST, before anything else, to generate the StoreOps
-                             codebase itself
+BOOTSTRAP_PROMPT.md         the Section 2.3 bootstrap prompt used to generate the baseline
 PROMPT.md                   the feature prompt for the demonstration run
 DESIGN_BRIEF.md             template with guided prompts — NOT filled in; the reasoning
                              must be yours, from your actual build
@@ -32,28 +30,46 @@ Dockerfile, docker-compose.yml
                              a live run (gitignored)
 .harness/reviews/            empty — this is where you commit the permanent audit trail
                              after your demonstration run
+src/StoreOps.Api             controllers, contracts (DTOs), middleware, Program.cs
+src/StoreOps.Application     services, request/response models, repository interfaces
+src/StoreOps.Domain          entities, enums, domain events — no framework dependencies
+src/StoreOps.Infrastructure  in-memory repository implementations, event bus, demo seeder
+tests/StoreOps.Api.Tests           integration tests (WebApplicationFactory)
+tests/StoreOps.Application.Tests   unit tests
 ```
+
+## Running locally
+
+```
+dotnet build
+dotnet test
+dotnet run --project src/StoreOps.Api
+```
+
+The API uses in-memory repositories (no database required), so every restart starts from
+a clean state. When run in the `Development` environment (the default for `dotnet run`),
+`DemoDataSeeder` (`src/StoreOps.Infrastructure/Seed/DemoDataSeeder.cs`) pre-populates it
+with a small, cross-referenced demo dataset — two stores, six staff users across every
+role, tasks in every status (including one overdue CRITICAL task for exercising SLA-breach
+behaviour), two programmes, notifications, and reports. All demo users share the password
+`Demo@123` (login is a plaintext comparison for now — see `StaffService`). The seeder does
+not run outside `Development`.
 
 ## What you still need to do
 
 Per programme guidance, the capstone brief is the complete specification for this build —
-there is no separate scaffold document to reconcile against. What's left is yours to do:
+there is no separate scaffold document to reconcile against. The baseline codebase has
+already been generated and committed (see git history); what's left is yours to do:
 
-1. Create your own empty git repository (`storeops-harness-dotnet` is the suggested name)
-   and copy this folder's contents into it.
-2. Open it in Claude Code and run `BOOTSTRAP_PROMPT.md`'s prompt to generate the actual
-   StoreOps source code — this starter kit only has the harness *around* the app; the app
-   itself does not exist yet.
-3. Verify, correct, and commit the baseline (Section 2.3, Step 4 of the brief).
-4. Read every file in `.harness/`, adjust anything that doesn't match decisions you'd
+1. Read every file in `.harness/`, adjust anything that doesn't match decisions you'd
    actually defend in the panel walkthrough — these are drafted to be StoreOps-specific and
    usable as-is, but the brief is explicit that the architectural judgment has to be yours,
    not an AI tool's (Section 8, "Note on AI tool use"). The four-project solution shape in
    `coding-conventions/SKILL.md` in particular is this kit's own proposal, not something
    dictated by the brief — keep it deliberately or change it.
-5. Run the harness: `@planner` + the prompt in `PROMPT.md`, review `spec.md`, type
+2. Run the harness: `@planner` + the prompt in `PROMPT.md`, review `spec.md`, type
    `APPROVED`, let the Generator/Evaluator loop run, capture the artefacts.
-6. Fill in `DESIGN_BRIEF.md`, `REFLECTION.md`, `DEPLOYMENT.md` from what actually happened.
+3. Fill in `DESIGN_BRIEF.md`, `REFLECTION.md`, `DEPLOYMENT.md` from what actually happened.
 
 See the accompanying development guide for the full phase-by-phase plan and a breakdown of
 what's manual vs. AI-assistable at each step.
