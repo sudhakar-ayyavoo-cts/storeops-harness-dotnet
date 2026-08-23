@@ -11,8 +11,13 @@ namespace StoreOps.Api.Controllers;
 public sealed class ActivitiesController : ControllerBase
 {
     private readonly IActivitiesService _service;
+    private readonly ISlaSweepService _slaSweepService;
 
-    public ActivitiesController(IActivitiesService service) => _service = service;
+    public ActivitiesController(IActivitiesService service, ISlaSweepService slaSweepService)
+    {
+        _service = service;
+        _slaSweepService = slaSweepService;
+    }
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TaskDto>>> List(
@@ -43,5 +48,12 @@ public sealed class ActivitiesController : ControllerBase
         var task = await _service.CreateAsync(request, ct);
         var result = TaskDto.FromDomain(task);
         return CreatedAtAction(nameof(List), new { id = result.Id }, result);
+    }
+
+    [HttpPost("sla-sweep")]
+    public async Task<ActionResult<SlaSweepResultDto>> SlaSweep(CancellationToken ct)
+    {
+        var breachesDetected = await _slaSweepService.SweepAsync(ct);
+        return Ok(new SlaSweepResultDto { BreachesDetected = breachesDetected });
     }
 }

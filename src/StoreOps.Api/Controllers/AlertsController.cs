@@ -9,8 +9,13 @@ namespace StoreOps.Api.Controllers;
 public sealed class AlertsController : ControllerBase
 {
     private readonly IAlertsService _service;
+    private readonly IAlertsEscalationSweepService _escalationSweepService;
 
-    public AlertsController(IAlertsService service) => _service = service;
+    public AlertsController(IAlertsService service, IAlertsEscalationSweepService escalationSweepService)
+    {
+        _service = service;
+        _escalationSweepService = escalationSweepService;
+    }
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<NotificationDto>>> List(
@@ -30,5 +35,12 @@ public sealed class AlertsController : ControllerBase
     {
         var notification = await _service.UpdateStatusAsync(id, dto.Status, ct);
         return Ok(NotificationDto.FromDomain(notification));
+    }
+
+    [HttpPost("sla-escalation-sweep")]
+    public async Task<ActionResult<SlaEscalationSweepResultDto>> SlaEscalationSweep(CancellationToken ct)
+    {
+        var escalationsCreated = await _escalationSweepService.SweepAsync(ct);
+        return Ok(new SlaEscalationSweepResultDto { EscalationsCreated = escalationsCreated });
     }
 }

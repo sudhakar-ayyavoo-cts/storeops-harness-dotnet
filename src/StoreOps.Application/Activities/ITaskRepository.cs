@@ -13,4 +13,6 @@ public interface ITaskRepository
     Task<StoreTask?> GetByIdAsync(Guid id, CancellationToken ct);
 
     Task<StoreTask> AddAsync(StoreTask task, CancellationToken ct);
+
+    Task<StoreTask> UpdateAsync(StoreTask task, CancellationToken ct);
 }

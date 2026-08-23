@@ -13,4 +13,5 @@ public sealed class StoreTask
     public DateTimeOffset? DueDate { get; set; }
     public DateTimeOffset CreatedAt { get; init; }
     public DateTimeOffset UpdatedAt { get; set; }
+    public DateTimeOffset? SlaBreachedAt { get; set; }
 }

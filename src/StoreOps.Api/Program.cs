@@ -16,7 +16,7 @@ builder.Services.AddInfrastructure();
 builder.Services.AddActivitiesModule();
 builder.Services.AddProgrammesModule();
 builder.Services.AddStaffModule();
-builder.Services.AddAlertsModule();
+builder.Services.AddAlertsModule(builder.Configuration);
 builder.Services.AddReportsModule();
 
 var app = builder.Build();

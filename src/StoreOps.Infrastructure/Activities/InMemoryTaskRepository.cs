@@ -40,4 +40,10 @@ internal sealed class InMemoryTaskRepository : ITaskRepository
         _store[task.Id] = task;
         return Task.FromResult(task);
     }
+
+    public Task<StoreTask> UpdateAsync(StoreTask task, CancellationToken ct)
+    {
+        _store[task.Id] = task;
+        return Task.FromResult(task);
+    }
 }

@@ -7,6 +7,7 @@ using StoreOps.Application.Reports;
 using StoreOps.Application.Staff;
 using StoreOps.Infrastructure.Activities;
 using StoreOps.Infrastructure.Alerts;
+using StoreOps.Infrastructure.Common;
 using StoreOps.Infrastructure.EventBus;
 using StoreOps.Infrastructure.Programmes;
 using StoreOps.Infrastructure.Reports;
@@ -19,6 +20,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddSingleton<IEventBus, InMemoryEventBus>();
+        services.AddSingleton<IClock, SystemClock>();
 
         services.AddSingleton<ITaskRepository, InMemoryTaskRepository>();
         services.AddSingleton<IProjectRepository, InMemoryProjectRepository>();
