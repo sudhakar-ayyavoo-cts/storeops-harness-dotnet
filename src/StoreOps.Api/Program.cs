@@ -5,6 +5,7 @@ using StoreOps.Application.Programmes;
 using StoreOps.Application.Reports;
 using StoreOps.Application.Staff;
 using StoreOps.Infrastructure;
+using StoreOps.Infrastructure.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,11 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    await DemoDataSeeder.SeedAsync(app.Services);
+}
 
 app.Run();
 
