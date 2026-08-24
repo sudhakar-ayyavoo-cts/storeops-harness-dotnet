@@ -1,6 +1,6 @@
 # StoreOps Bootstrap Prompt — .NET 8
 
-This is the Section 2.3 bootstrap prompt, filled in for the .NET 8 stack. Paste this into
+This is the bootstrap prompt, filled in for the .NET 8 stack. Paste this into
 Claude Code **in your own empty git repository**, as the very first thing you do — before
 any harness files exist. This generates the baseline StoreOps codebase the harness will
 later govern.
@@ -44,7 +44,7 @@ Use in-memory storage (no database required).
    and `.harness/skills/architecture-principles/SKILL.md` (the five enforcement rules) —
    both already in this starter kit. Correct anything that doesn't match: a repository
    accidentally left `public`, a raw exception type, a controller with business logic in it.
-2. Run the verification commands (Section 2.3, Step 4 of the brief):
+2. Run the verification commands:
    ```
    dotnet build && dotnet test
    ```

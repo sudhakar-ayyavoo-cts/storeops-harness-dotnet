@@ -12,7 +12,7 @@ through it, consistent with the AI-Native Tech Architect capstone brief (Build T
 
 ```
 CLAUDE.md                  root orchestrator
-BOOTSTRAP_PROMPT.md         the Section 2.3 bootstrap prompt used to generate the baseline
+BOOTSTRAP_PROMPT.md         the bootstrap prompt used to generate the baseline
 PROMPT.md                   the feature prompt for the demonstration run
 DESIGN_BRIEF.md             template with guided prompts — NOT filled in; the reasoning
                              must be yours, from your actual build

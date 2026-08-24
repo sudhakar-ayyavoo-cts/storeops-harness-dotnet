@@ -4,14 +4,6 @@
 what the application is, what its five modules own, and what "correct" looks like at the
 data-model level. Read by all four agents.
 
-> **Source note:** the module list, entities, and enum values below are taken directly from
-> the capstone brief (Section 3.3). The endpoint list is this project's own baseline,
-> derived from the brief's "9 REST endpoints" requirement and the verification call in
-> Section 2.3, Step 4 (`GET /api/tasks`) — the brief is being treated as the complete and
-> final specification for this build, per programme guidance. If your own reading of the
-> brief suggests a different endpoint split, change the table below; it is the working
-> contract the Generator and Evaluator will be held to either way.
-
 ## What StoreOps is
 
 A REST API for retail store operations management: creating operational programmes,

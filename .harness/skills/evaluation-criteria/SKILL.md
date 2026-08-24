@@ -8,7 +8,7 @@ explicit pass/fail criteria per checklist item. Read by the Evaluator alongside
 
 | Dimension | Weight | Why this weight, for StoreOps |
 |---|---|---|
-| Architecture Compliance | 40% | The client's stated reason for requiring a harness at all was four specific architecture violations (Section 2). This dimension is weighted highest because a feature that is functionally correct but violates the module boundary or event-bus rule is *worse* than one that fails an AC — it reintroduces exactly the risk the harness exists to remove. |
+| Architecture Compliance | 40% | The client's stated reason for requiring a harness at all was four specific architecture violations. This dimension is weighted highest because a feature that is functionally correct but violates the module boundary or event-bus rule is *worse* than one that fails an AC — it reintroduces exactly the risk the harness exists to remove. |
 | Correctness vs. Acceptance Criteria | 35% | The feature still has to do what was asked. Weighted just under Architecture Compliance, not above it, because a correctness gap is usually a fast, local fix; an architecture violation that ships is a standing risk until someone notices. |
 | Code Quality & Tests | 25% | Coverage, test quality (see how-to-test/SKILL.md's "asserts more than a status code" rule), and naming/DI conventions. Lower weight because these are largely mechanical to fix in a retry and rarely represent irrecoverable risk the way an architecture violation does. |
 
@@ -112,7 +112,7 @@ architectural risk a hard gate protects against.
 
 ## Escalation path
 
-Handled by the orchestrator (`CLAUDE.md`, Section 4), not by this file directly: three
+Handled by the orchestrator (`CLAUDE.md`), not by this file directly: three
 consecutive `FAIL` verdicts on the same sprint (no hard-gate-free path to at least
 CONDITIONAL PASS found in 3 Generator attempts) triggers `escalation.md` and hands control
 to the developer. The Evaluator's role in that path is only to keep producing honest,

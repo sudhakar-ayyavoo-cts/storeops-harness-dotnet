@@ -44,7 +44,7 @@ A specification with:
   (defaults it chose and why, e.g. "grace period defaults to 4 hours; not specified in the
   prompt").
 - Ends with the line `STATUS: AWAITING APPROVAL` on its own, as the last line of the file.
-  This is the marker Claude Code's orchestrator (`CLAUDE.md`, Section 3) looks for to halt
+  This is the marker Claude Code's orchestrator (`CLAUDE.md`) looks for to halt
   the run.
 
 ### `.harness/output/sprint-N-contract.md` (one per sprint, written after `APPROVED`)

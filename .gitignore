@@ -5,7 +5,7 @@ obj/
 
 # Harness working files — reset each run, not part of the permanent record.
 # .harness/reviews/ is committed on purpose; .harness/output/ is not.
-.harness/output/*
+# .harness/output/*
 !.harness/output/.gitkeep
 
 # IDE

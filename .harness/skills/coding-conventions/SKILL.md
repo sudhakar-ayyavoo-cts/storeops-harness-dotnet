@@ -104,7 +104,7 @@ layer replaces it later.
 
 ## What "stub implementation" means for this bootstrap
 
-Per the bootstrap prompt (Section 2.3): generate enough structure to compile, run tests,
+Per the bootstrap prompt: generate enough structure to compile, run tests,
 and pass lint — not full business logic. Concretely: Repository methods may be a real,
 working in-memory `ConcurrentDictionary`-backed implementation (this is cheap to make fully
 correct and gives the Evaluator something real to test against); Service methods should

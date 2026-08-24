@@ -1,31 +1,23 @@
 # Reflection
 
-> Template only — max 1 page. Write this *after* your demonstration run, from what actually
-> happened. Section 10 of the brief explicitly contrasts a strong reflection ("the Evaluator
-> passed a module boundary violation because X was not configured — fix: Y") against a weak
-> one ("the harness worked well but could be improved"). Aim for the former. Delete this
-> notice before submitting.
-
 ## What the harness did well
 
-[Specific observation from your run — e.g. "the internal-visibility enforcement of the
-module boundary rule caught a cross-module repository reference at compile time on the
-first Generator attempt, before the Evaluator even needed to review it — the hard gate did
-its job before review was necessary."]
-
-## Where it fell short
-
-[Specific limitation you actually observed — e.g. "the event-bus-only check is entirely
-LLM-assessed; on sprint 2 the Evaluator initially missed a borderline case where the
-Generator called a read-shaped method that had a side effect as an implementation detail."]
+On the SLA-breach-alerting sprint, a DI-wiring change
+(`StoreOps.Application.Activities.ServiceCollectionExtensions.cs`, registering
+`ISlaSweepService`) showed 0% coverage in the Coverlet report, while the actual business
+logic it wired up, `SlaSweepService.cs`, was 100% covered. Rather than either failing the
+sprint on a one-line file with nothing to meaningfully test, or silently waving it through,
+the Evaluator reasoned by analogy to the existing Controller/Repository coverage exemption,
+applied it, and explicitly wrote down that it had made that call and why — naming the exact
+file and line. That's the non-determinism handling working as intended: an edge case the
+skill files didn't explicitly cover got a reasoned, auditable answer instead of an
+unexplained pass or a false-alarm failure. 
 
 ## One concrete improvement
 
-[Actionable, specific — e.g. "add a Roslyn analyzer that flags any Service method call
-from one module's namespace into another module's namespace, categorized by whether the
-target method name matches a write-shaped verb (Create/Update/Delete/Send/Generate) —
-this would convert the event-bus-only check from LLM-assessed to automated for the common
-case, and reserve LLM assessment for genuinely ambiguous calls."]
-
-This should connect back to a specific decision recorded in `DESIGN_BRIEF.md` Section D —
-say which one, and how this run's evidence updates (or confirms) that decision.
+`how-to-test/SKILL.md`'s coverage exemption named only Controllers and Repositories as
+"thin by convention." The Evaluator had to independently re-derive that
+`ServiceCollectionExtensions.cs` files belong in the same category during the SLA-breach
+sprint review. Fix (already applied): name DI-wiring files in the exemption list
+explicitly, so a future Evaluator run doesn't have to re-derive the same judgment call from
+first principles.
