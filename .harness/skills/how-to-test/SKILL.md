@@ -72,7 +72,7 @@ eventBus.Verify(b => b.Publish(It.Is<SlaBreachEvent>(
 Minimum 80% line coverage on `StoreOps.Application` (Service layer, where the business
 rules live) for files touched by a sprint, measured via `dotnet test
 /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura` (or `dotnet-coverage`/Coverlet
-equivalent). Controller and Repository coverage is not separately gated — they are thin by
+equivalent). Controller, ServiceCollectionExtensions.cs and Repository coverage is not separately gated — they are thin by
 convention (per architecture-principles, Rule 4) and are exercised indirectly by the
 integration tests.
 
