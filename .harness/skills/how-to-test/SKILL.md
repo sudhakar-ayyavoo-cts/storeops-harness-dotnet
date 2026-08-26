@@ -2,8 +2,8 @@
 
 **Purpose.** Generator-specific rules for what must be tested, at which level, and with
 what xUnit/`WebApplicationFactory` patterns — so tests actually verify business rules
-(the third failure mode from Section 2 of the brief: "tests that asserted HTTP status
-codes but did not verify business rule compliance"), not just that an endpoint returns 200.
+("tests that asserted HTTP status codes but did not verify business rule compliance"), 
+not just that an endpoint returns 200.
 
 ## The rule this file exists to enforce
 

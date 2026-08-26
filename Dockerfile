@@ -15,6 +15,13 @@ RUN dotnet publish src/StoreOps.Api/StoreOps.Api.csproj -c Release -o /app --no-
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
+
+# curl is required by docker-compose.yml's healthcheck; the base aspnet runtime image
+# doesn't include it.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=build /app .
 
 ENV ASPNETCORE_URLS=http://+:8080

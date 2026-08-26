@@ -76,7 +76,7 @@ developer: "APPROVED"
                                   if iteration count <= 3: feed evaluator-feedback.md
                                   back to the Generator as additional context and re-run
                                   the Generator for sprint N (same contract, no re-plan)
-                                  if iteration count > 3: ESCALATE (see Section 4)
+                                  if iteration count > 3: ESCALATE
 
         Monitor runs after every verdict (PASS, CONDITIONAL PASS, FAIL, or escalation)
            → writes .harness/reviews/sprint-N-run-log.md

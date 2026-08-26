@@ -26,7 +26,7 @@ system.
 
 | Module | Endpoint | Notes |
 |---|---|---|
-| activities | `GET /api/tasks` | list, filterable by status/store — this is the endpoint used to verify the running app in Section 2.3, Step 4 |
+| activities | `GET /api/tasks` | list, filterable by status/store — this is the endpoint used to verify the running app |
 | activities | `POST /api/tasks` | create |
 | programmes | `GET /api/programmes` | list |
 | programmes | `POST /api/programmes` | create |

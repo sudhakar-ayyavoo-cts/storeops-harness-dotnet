@@ -6,7 +6,7 @@ solution. Read by all four agents — this is the file every hard gate ultimatel
 back to.
 
 Each rule below corresponds directly to one of the four failure modes the standards team
-observed in the prior AI-assisted experiment (capstone brief, Section 2). If you are
+observed in the prior AI-assisted experiment. If you are
 tempted to soften one of these into a "best effort" suggestion, don't — that is exactly how
 the original failures happened.
 
@@ -80,8 +80,7 @@ middleware is itself treated as a defect (logged as a harness violation, returns
 
 *Enforcement:* Roslyn analyzer / custom `dotnet build` warning (or, at minimum, an
 Evaluator text-scan for `throw new (?!AppError-derived-type)` patterns in
-`Application/**/*.cs` and `Api/Controllers/**/*.cs`) — automated + LLM-assessed, per
-Section 3.5 of the brief.
+`Application/**/*.cs` and `Api/Controllers/**/*.cs`) — automated + LLM-assessed.
 
 ## Rule 4 — Layer separation (prevents: routes/repositories doing another layer's job)
 
